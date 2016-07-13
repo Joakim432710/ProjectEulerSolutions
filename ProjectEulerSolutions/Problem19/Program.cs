@@ -28,12 +28,18 @@ namespace Problem19
             for (var iii = 1900; iii <= 2000; ++iii)
                 years.Add(new Year(iii));
 
+            var days = "";
+
             var countSundays = 0;
             foreach (var year in years.Skip(1)) //1900 doesn't count
                 foreach (var month in year.Months)
                     if (month.Days[0].Type == Year.Month.Day.DayType.Sunday)
+                    {
                         ++countSundays;
+                        days += $"{month.Days[0].Type}, {month.Type} {month.Days[0].Id} {year.Id}" + Environment.NewLine;
+                    }
 
+            Console.WriteLine(days);
             Console.WriteLine(countSundays + " Sundays fell on the first of the month from 1 Jan 1901 to 31 Dec 2000");
             Console.ReadLine();
         }
